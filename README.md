@@ -20,4 +20,4 @@ _[1] .. depends on your copy/paste skills_
 _[2] .. if this is not true, [report here](https://github.com/markknol/console-log-viewer/issues)_  
 _[3] .. of course, it is not you_  
 
-![githalytics.com alpha](https://cruel-carlota.pagodabox.com/082139baa45624940f19e1af4542a4a7 "githalytics.com")](http://githalytics.com/markknol/console-log-viewer)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/082139baa45624940f19e1af4542a4a7 "githalytics.com")](http://githalytics.com/markknol/console-log-viewer)
