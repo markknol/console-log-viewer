@@ -1,7 +1,7 @@
 console-log-viewer.js
 ==================
 
-#### .. displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment. Installed in 5 seconds [1]. Works on every device, every browser [2].
+#### .. displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment. Installed in 5 seconds [1]. Works on every device and browser [2].
 
 I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors. [Adobe Edge Inspect](http://html.adobe.com/edge/inspect/) is a great tool for this but is not available in all browsers, and takes some time to setup. Nice when you want to see your logs or see what errors you [3] have created in a mobile browser while debugging. 
 
