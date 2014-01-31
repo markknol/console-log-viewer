@@ -9,7 +9,7 @@ I found debugging is a bit hard on mobile devices since there is no magic button
 
 #### How to install (in 5 seconds)?
 
-Add this piece of code somewhere in your html-page. Save document, refresh browser.
+Add this piece of code somewhere in your html-page. Save document, refresh browser.  
 In the `<head>` before other `<script>` tags is probably the best place.
     
     <script src="https://raw.github.com/markknol/console-log-viewer/master/console-log-viewer.js"></script>
