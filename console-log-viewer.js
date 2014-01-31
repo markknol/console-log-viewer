@@ -80,7 +80,7 @@
 		css += '#debug_console a.log-button {font: bold 12px Arial, sans-serif!important; pointer-events:all; text-align:center; text-decoration:none; border:1px solid #999; background:#333; color:#fff; width:16px; height:16px; padding:5px; margin:1px; display:block; float:right; }';
 		css += '#debug_console font.log-date {color:gray;}';
 		css += '#debug_console font.log-info {color:yellow;}';
-		css += '#debug_console font.log-debug {color:blue;}';
+		css += '#debug_console font.log-debug {color:lightblue;}';
 		css += '#debug_console font.log-error {color:red;}';
 		css += '#debug_console font.log-normal {color:white;}';
 		
