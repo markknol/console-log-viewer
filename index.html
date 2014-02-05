@@ -31,38 +31,41 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        
+        
+        <h1>
+<a name="console-log-viewerjs" class="anchor" href="#console-log-viewerjs"><span class="octicon octicon-link"></span></a>console-log-viewer.js</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h4>
+<a name="-displays-logs-and-javascript-errors-in-an-overlay-on-top-of-your-site-useful-for-mobile-webdevelopment-installed-in-5-seconds-1-works-on-every-device-and-browser-2" class="anchor" href="#-displays-logs-and-javascript-errors-in-an-overlay-on-top-of-your-site-useful-for-mobile-webdevelopment-installed-in-5-seconds-1-works-on-every-device-and-browser-2"><span class="octicon octicon-link"></span></a>.. displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment. Installed in 5 seconds [1]. Works on every device and browser [2].</h4>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors. <a href="http://html.adobe.com/edge/inspect/">Adobe Edge Inspect</a> is a great tool for this but is not available in all browsers, and takes some time to setup. Nice when you want to see your logs or see what errors you [3] have created in a mobile browser while debugging. </p>
+
+<p><a href="https://github-camo.global.ssl.fastly.net/fff246df1aa502bdd0ed111c89d1b22c482aa7d9/687474703a2f2f64756d702e7374726f65702e6e6c2f636f6e736f6c652d6c6f672d7669657765722e676966" target="_blank"><img src="https://github-camo.global.ssl.fastly.net/fff246df1aa502bdd0ed111c89d1b22c482aa7d9/687474703a2f2f64756d702e7374726f65702e6e6c2f636f6e736f6c652d6c6f672d7669657765722e676966" alt="console log viewer" data-canonical-src="http://dump.stroep.nl/console-log-viewer.gif" style="max-width:100%;"></a></p>
+
+<h4>
+<a name="how-to-install-in-5-seconds" class="anchor" href="#how-to-install-in-5-seconds"><span class="octicon octicon-link"></span></a>How to install (in 5 seconds)?</h4>
+
+<p>Add this piece of code somewhere in your html-page. Save document, refresh browser.<br>
+In the <code>&lt;head&gt;</code> before other <code>&lt;script&gt;</code> tags is probably the best place.</p>
+
+<pre><code>&lt;script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h4>
+<a name="what-does-it-do" class="anchor" href="#what-does-it-do"><span class="octicon octicon-link"></span></a>What does it do?</h4>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>It captures <code>console.log</code>, <code>console.info</code>, <code>console.debug</code>, <code>console.error</code> and <code>window.onerror</code> and displays it in an overlay on top of your site. That's it.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p><em>[1] .. depends on your copy/paste skills</em><br><em>[2] .. if this isn't true <a href="https://github.com/markknol/console-log-viewer/issues">report here</a></em><br><em>[3] .. protip: blame someone else</em>  </p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p><a href="http://githalytics.com/markknol/console-log-viewer"><img src="https://github-camo.global.ssl.fastly.net/fa15d007edea327be48a2401ae067c404395c527/68747470733a2f2f637275656c2d6361726c6f74612e7061676f6461626f782e636f6d2f3038323133396261613435363234393430663139653161663435343261346137" alt="githalytics.com alpha" title="githalytics.com" data-canonical-src="https://cruel-carlota.pagodabox.com/082139baa45624940f19e1af4542a4a7" style="max-width:100%;"></a></p></article>
+  </div>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+        
+        
+        
+             </section>
     </div>
 
     <!-- FOOTER  -->
