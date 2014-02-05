@@ -12,7 +12,7 @@ I found debugging is a bit hard on mobile devices since there is no magic button
 Add this piece of code somewhere in your html-page. Save document, refresh browser.  
 In the `<head>` before other `<script>` tags is probably the best place.
     
-    <script src="https://raw.github.com/markknol/console-log-viewer/master/console-log-viewer.js"></script>
+    <script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
 
 #### What does it do?
 
