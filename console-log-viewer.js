@@ -1,5 +1,7 @@
 /**
- * console.log on top of your website / game. Useful for mobile development. Also captures window errors. 
+ * Displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment.
+ * 
+ * http://markknol.github.io/console-log-viewer/
  * @author Mark Knol [http://blog.stroep.nl]
  */
 
