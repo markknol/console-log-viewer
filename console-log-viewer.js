@@ -10,7 +10,7 @@
 	var _items = [];
 	
 	// add div to DOM
-	document.write('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">↕</a><div id="debug_console_messages"></div></div>');
+	document.write('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><div id="debug_console_messages"></div></div>');
 	document.getElementById("debug_console_close_button").addEventListener("click", function(e) { document.getElementById("debug_console").style.display = 'none'; e.preventDefault();}, false);
 	document.getElementById("debug_console_position_button").addEventListener("click", function(e) { document.getElementById("debug_console").className = document.getElementById("debug_console").className == "top-aligned" ? "bottom-aligned" : "top-aligned"; e.preventDefault();}, false);
 	addCSS();
