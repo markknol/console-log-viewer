@@ -16,7 +16,7 @@ In the `<head>` before other `<script>` tags is probably the best place.
 
 #### What does it do?
 
-It captures `console.log`, `console.info`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it.
+It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it.
 
   
 _[1] .. depends on your copy/paste skills_  
