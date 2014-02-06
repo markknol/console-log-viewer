@@ -21,6 +21,7 @@
 			log:console.log,
 			debug:console.debug,
 			info:console.info,
+			warn:console.warn,
 			error:console.error
 		}, 
 		window:{onerror: window.onerror}
@@ -38,6 +39,10 @@
 	if (original.console.info) console.info = function(){
 		log(arguments,"log-info", true); 
 		original.console.info.apply(this, arguments);
+	}
+	if (original.console.warn) console.warn = function(){
+		log(arguments,"log-warn", true); 
+		original.console.warn.apply(this, arguments);
 	}
 	if (original.console.error) console.error = function(){
 		log(arguments,"log-error", true); 
@@ -82,6 +87,7 @@
 		css += '#debug_console a.log-button {font: bold 12px Arial, sans-serif!important; pointer-events:all; text-align:center; text-decoration:none; border:1px solid #999; background:#333; color:#fff; width:16px; height:16px; padding:5px; margin:1px; display:block; float:right; }';
 		css += '#debug_console font.log-date {color:gray;}';
 		css += '#debug_console font.log-info {color:yellow;}';
+		css += '#debug_console font.log-warn {color:orange;}';
 		css += '#debug_console font.log-debug {color:lightblue;}';
 		css += '#debug_console font.log-error {color:red;}';
 		css += '#debug_console font.log-normal {color:white;}';
