@@ -5,63 +5,38 @@
  * @author Mark Knol [http://blog.stroep.nl]
  */
 
-(function() {
+
+var ConsoleLogViewer = (function() {
 	var TOTAL = 15;
 	var _items = [];
 	
-	// add div to DOM
-	document.write('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><div id="debug_console_messages"></div></div>');
-	document.getElementById("debug_console_close_button").addEventListener("click", function(e) { document.getElementById("debug_console").style.display = 'none'; e.preventDefault();}, false);
-	document.getElementById("debug_console_position_button").addEventListener("click", function(e) { document.getElementById("debug_console").className = document.getElementById("debug_console").className == "top-aligned" ? "bottom-aligned" : "top-aligned"; e.preventDefault();}, false);
-	addCSS();
-	
-	// store original functions
-	var original = {
-		console: {
-			log:console.log,
-			debug:console.debug,
-			info:console.info,
-			warn:console.warn,
-			error:console.error
-		}, 
-		window:{onerror: window.onerror}
+	function ConsoleLogViewer()
+	{
+		var self = this;
+		try
+		{
+			this.addCSS();
+			self.addDivs();
+			self.overwrite();
+		}
+		catch(e) 
+		{
+			setTimeout(function()
+			{
+				this.addCSS();
+				self.addDivs();
+				self.overwrite();
+			},1);
+		}
 	}
 	
-	// overwrite original functions
-	if (original.console.log) console.log = function(){
-		log(arguments,"log-normal", true); 
-		original.console.log.apply(this, arguments);
-	}
-	if (original.console.debug) console.debug = function(){
-		log(arguments,"log-debug", true); 
-		original.console.debug.apply(this, arguments);
-	}
-	if (original.console.info) console.info = function(){
-		log(arguments,"log-info", true); 
-		original.console.info.apply(this, arguments);
-	}
-	if (original.console.warn) console.warn = function(){
-		log(arguments,"log-warn", true); 
-		original.console.warn.apply(this, arguments);
-	}
-	if (original.console.error) console.error = function(){
-		log(arguments,"log-error", true); 
-		original.console.error.apply(this, arguments);
-	}
-	window.onerror = function(message, file, lineNumber){
-		log(arguments, "log-error", true); 
-		if (original.window.onerror) return original.window.onerror(message, file, lineNumber);
-		else return false;
-	}
-	
-	function getFormattedTime()
+	ConsoleLogViewer.prototype.getFormattedTime = function()
 	{
 		var date = new Date();
-		return f(date.getHours(), 2) + ":" + f(date.getMinutes(), 2) + ":" + f(date.getSeconds(), 2) + ": " + f(date.getMilliseconds(), 3);
+		return this.format(date.getHours(), 2) + ":" + this.format(date.getMinutes(), 2) + ":" + this.format(date.getSeconds(), 2) + ": " + this.format(date.getMilliseconds(), 3);
 	}
 	
-	// 
-	function f(v, x)
+	ConsoleLogViewer.prototype.format = function(v, x)
 	{
 		if (x===2) return  (v < 10) ? "0" + v : "" + v;
 		else if (x===3)
@@ -72,13 +47,65 @@
 		}
 	}
 	
-	function log(args, color, splitArgs){
-		_items.push("<font class='log-date'>" + getFormattedTime() + " </font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
+	ConsoleLogViewer.prototype.log = function(args, color, splitArgs){
+		_items.push("<font class='log-date'>" + this.getFormattedTime() + " </font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
 		while (_items.length > TOTAL) _items.shift();
 		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
 	}
 	
-	function addCSS()
+	ConsoleLogViewer.prototype.overwrite = function()
+	{
+		// store original functions
+		var original = {
+			console: {
+				log:console.log,
+				debug:console.debug,
+				info:console.info,
+				warn:console.warn,
+				error:console.error
+			}, 
+			window:{onerror: window.onerror}
+		}
+		var self = this;
+		// overwrite original functions
+		if (original.console.log) console.log = function(){
+			self.log(arguments,"log-normal", true); 
+			original.console.log.apply(this, arguments);
+		}
+		if (original.console.debug) console.debug = function(){
+			self.log(arguments,"log-debug", true); 
+			original.console.debug.apply(this, arguments);
+		}
+		if (original.console.info) console.info = function(){
+			self.log(arguments,"log-info", true); 
+			original.console.info.apply(this, arguments);
+		}
+		if (original.console.warn) console.warn = function(){
+			self.log(arguments,"log-warn", true); 
+			original.console.warn.apply(this, arguments);
+		}
+		if (original.console.error) console.error = function(){
+			self.log(arguments,"log-error", true); 
+			original.console.error.apply(this, arguments);
+		}
+		window.onerror = function(message, file, lineNumber){
+			self.log(arguments, "log-error", true); 
+			if (original.window.onerror) return original.window.onerror(message, file, lineNumber);
+			else return false;
+		}
+	}
+	
+	ConsoleLogViewer.prototype.addDivs = function()
+	{
+		var div = document.createElement('div');
+		div.innerHTML = ('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><div id="debug_console_messages"></div></div>');
+		document.getElementsByTagName('body')[0].appendChild(div);
+		
+		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { document.getElementById("debug_console").style.display = 'none'; e.preventDefault();}, false);
+		document.getElementById("debug_console_position_button").addEventListener("click", function(e) { document.getElementById("debug_console").className = document.getElementById("debug_console").className == "top-aligned" ? "bottom-aligned" : "top-aligned"; e.preventDefault();}, false);
+	}
+	
+	ConsoleLogViewer.prototype.addCSS = function()
 	{
 		var css = '#debug_console { background: rgba(0,0,0,.75); font: 10px Arial, sans-serif!important; position:fixed; padding:0; margin:0; z-index:12834567; box-zizing:border-box; pointer-events:none; text-align:left; }';
 		css += '#debug_console_button { border:1px solid #fff; position:absolute; z-index:2; }';
@@ -99,4 +126,8 @@
 		
 		document.getElementsByTagName('head')[0].appendChild(style);
 	}
+	
+	return ConsoleLogViewer;
 })();
+
+new ConsoleLogViewer();
