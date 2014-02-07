@@ -15,7 +15,7 @@ var ConsoleLogViewer = (function() {
 		var self = this;
 		try
 		{
-			this.addCSS();
+			self.addCSS();
 			self.addDivs();
 			self.overwrite();
 		}
@@ -23,7 +23,7 @@ var ConsoleLogViewer = (function() {
 		{
 			setTimeout(function()
 			{
-				this.addCSS();
+				self.addCSS();
 				self.addDivs();
 				self.overwrite();
 			},1);
