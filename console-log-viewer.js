@@ -7,6 +7,9 @@
 
 
 var ConsoleLogViewer = (function() {
+	
+	ConsoleLogViewer.logEnabled = true;
+	
 	var TOTAL = 15;
 	var _items = [];
 	
@@ -16,7 +19,7 @@ var ConsoleLogViewer = (function() {
 		try
 		{
 			self.addCSS();
-			self.addDivs();
+			self.addDivs(self);
 			self.overwrite();
 		}
 		catch(e) 
@@ -24,7 +27,7 @@ var ConsoleLogViewer = (function() {
 			setTimeout(function()
 			{
 				self.addCSS();
-				self.addDivs();
+				self.addDivs(self);
 				self.overwrite();
 			},61);
 		}
@@ -38,8 +41,8 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.format = function(v, x)
 	{
-		if (x===2) return  (v < 10) ? "0" + v : "" + v;
-		else if (x===3)
+		if (x == 2) return  (v < 10) ? "0" + v : "" + v;
+		else if (x == 3)
 		{
 			if  (v < 10) return "00" + v;
 			else if  (v < 100) return "0" + v;
@@ -47,7 +50,10 @@ var ConsoleLogViewer = (function() {
 		}
 	}
 	
-	ConsoleLogViewer.prototype.log = function(args, color, splitArgs){
+	ConsoleLogViewer.prototype.log = function(args, color, splitArgs)
+	{
+		if (!ConsoleLogViewer.logEnabled) return;
+		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
 		while (_items.length > TOTAL) _items.shift();
 		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
@@ -55,6 +61,7 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.overwrite = function()
 	{
+		var self = this;
 		// store original functions
 		var original = {
 			console: {
@@ -66,7 +73,7 @@ var ConsoleLogViewer = (function() {
 			}, 
 			window:{onerror: window.onerror}
 		}
-		var self = this;
+		
 		// overwrite original functions
 		if (original.console.log) console.log = function(){
 			self.log(arguments,"log-normal", true); 
@@ -95,14 +102,27 @@ var ConsoleLogViewer = (function() {
 		}
 	}
 	
-	ConsoleLogViewer.prototype.addDivs = function()
+	ConsoleLogViewer.prototype.addDivs = function(self)
 	{
 		var div = document.createElement('div');
-		div.innerHTML = ('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><div id="debug_console_messages"></div></div>');
+		div.innerHTML = ('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div></div>');
 		document.getElementsByTagName('body')[0].appendChild(div);
 		
-		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { document.getElementById("debug_console").style.display = 'none'; e.preventDefault();}, false);
-		document.getElementById("debug_console_position_button").addEventListener("click", function(e) { document.getElementById("debug_console").className = document.getElementById("debug_console").className == "top-aligned" ? "bottom-aligned" : "top-aligned"; e.preventDefault();}, false);
+		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { 
+			document.getElementById("debug_console").style.display = 'none'; 
+			e.preventDefault();
+		}, false);
+		
+		document.getElementById("debug_console_position_button").addEventListener("click", function(e) { 
+			document.getElementById("debug_console").className = (document.getElementById("debug_console").className == "top-aligned") ? "bottom-aligned" : "top-aligned"; 
+			e.preventDefault();
+		}, false);
+		
+		document.getElementById("debug_console_pause_button").addEventListener("click", function(e) { 
+			ConsoleLogViewer.logEnabled = !ConsoleLogViewer.logEnabled; 
+			this.innerHTML = (!ConsoleLogViewer.logEnabled ? "||" : "&#9658;"); 
+			e.preventDefault();
+		}, false);
 	}
 	
 	ConsoleLogViewer.prototype.addCSS = function()
