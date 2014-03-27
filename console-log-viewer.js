@@ -104,8 +104,9 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.addDivs = function(self)
 	{
+		var alignment = window.location.href.indexOf("console_at_bottom=true") > -1 || window.location.href.indexOf("console_at_bottom=1") > -1 ? "bottom-aligned" : "top-aligned";
 		var div = document.createElement('div');
-		div.innerHTML = ('<div id="debug_console" class="top-aligned"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div></div>');
+		div.innerHTML = ('<div id="debug_console" class="'+alignment+'"><a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div></div>');
 		document.getElementsByTagName('body')[0].appendChild(div);
 		
 		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { 
