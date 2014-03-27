@@ -18,6 +18,9 @@ In the `<head>` before other `<script>` tags is probably the best place.
 
 It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it.
 
+#### Features
+* Pause/resume the console logs by pressing the ► button
+* Switch top/bottom alignment by pressing the ↕ button in the console. To start bottom-aligned, use `console_at_bottom=true` in the url.
   
 _[1] .. depends on your copy/paste skills_  
 _[2] .. if this isn't true [report here](https://github.com/markknol/console-log-viewer/issues)_  
