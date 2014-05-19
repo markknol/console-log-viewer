@@ -131,6 +131,7 @@ var ConsoleLogViewer = (function() {
 	ConsoleLogViewer.prototype.addCSS = function()
 	{
 		var css = '#debug_console { background: rgba(0,0,0,.75); font: 10px Arial, sans-serif!important; position:fixed; padding:0; margin:0; z-index:12834567; box-sizing:border-box; pointer-events:none; text-align:left; text-transform:none; }';
+		css += '#debug_console_messages { background:transparent;pointer-events:none; }'
 		css += '#debug_console_button { border:1px solid #fff; position:absolute; z-index:2; }';
 		css += '#debug_console.top-aligned {left:0; right:0; top:0;}';
 		css += '#debug_console.bottom-aligned {left:0; right:0; bottom:0;}';
