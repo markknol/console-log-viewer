@@ -9,8 +9,8 @@
 var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.logEnabled = true;
+	ConsoleLogViewer.TOTAL = 15;
 	
-	var TOTAL = 15;
 	var _items = [];
 	
 	function ConsoleLogViewer()
@@ -55,7 +55,7 @@ var ConsoleLogViewer = (function() {
 		if (!ConsoleLogViewer.logEnabled) return;
 		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
-		while (_items.length > TOTAL) _items.shift();
+		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
 		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
 	}
 	
