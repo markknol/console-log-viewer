@@ -105,6 +105,19 @@ var ConsoleLogViewer = (function() {
 	ConsoleLogViewer.prototype.addDivs = function(self)
 	{
 		var alignment = window.location.href.indexOf("console_at_bottom=true") > -1 || window.location.href.indexOf("console_at_bottom=1") > -1 ? "bottom-aligned" : "top-aligned";
+		var scripts = window.document.getElementsByTagName('script');
+		for (var i=0;i<scripts.length;i++) {
+		    script = scripts[i];
+		    if(typeof script !== 'undefined' && typeof script.src !== 'undefined'){
+		        if (script.src.indexOf('console-log-viewer.js') !== -1) {
+		            if(script.src.indexOf('console_at_bottom=true') !== -1){
+		                alignment = 'bottom-aligned';
+		                break;
+		            }
+		        }
+		    }
+		}
+		
 		var div = document.createElement('div');
 		div.id = "debug_console";
 		div.className = alignment;
