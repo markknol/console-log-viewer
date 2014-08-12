@@ -5,7 +5,7 @@ console-log-viewer.js
 
 I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors. [Adobe Edge Inspect](http://html.adobe.com/edge/inspect/) is a great tool for this but is not available in all browsers, and takes some time to setup. Nice when you want to see your logs or see what errors you [3] have created in a mobile browser while debugging. 
 
-<img src="http://dump.stroep.nl/console-log-viewer.gif" alt="console log viewer"/>
+<img src="http://dump.stroep.nl/console-log-viewer.gif?v=2" alt="console log viewer"/>
 
 #### How to install (in 5 seconds)?
 
