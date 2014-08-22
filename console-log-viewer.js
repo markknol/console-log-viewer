@@ -96,7 +96,7 @@ var ConsoleLogViewer = (function() {
 			original.console.error.apply(this, arguments);
 		}
 		window.onerror = function(message, url, lineNumber){
-			self.log([message, "<a href='view-source:"+url+"#"+lineNumber+"'>"+url+"#"+lineNumber+"</a>"], "log-error", true); 
+			self.log([message, "<a target='_blank' href='view-source:"+url+"#"+lineNumber+"'>"+url+"#"+lineNumber+"</a>"], "log-error", true); 
 			if (original.window.onerror) return original.window.onerror(message, url, lineNumber);
 			else return false;
 		}
