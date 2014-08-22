@@ -95,9 +95,9 @@ var ConsoleLogViewer = (function() {
 			self.log(arguments,"log-error", true); 
 			original.console.error.apply(this, arguments);
 		}
-		window.onerror = function(message, file, lineNumber){
-			self.log([message, "<a href='view-source:"+file+"#"+lineNumber+"'>"+file+"#"+lineNumber+"</a>"], "log-error", true); 
-			if (original.window.onerror) return original.window.onerror(message, file, lineNumber);
+		window.onerror = function(message, url, lineNumber){
+			self.log([message, "<a href='view-source:"+url+"#"+lineNumber+"'>"+url+"#"+lineNumber+"</a>"], "log-error", true); 
+			if (original.window.onerror) return original.window.onerror(message, url, lineNumber);
 			else return false;
 		}
 	}
@@ -149,7 +149,7 @@ var ConsoleLogViewer = (function() {
 		css += '#debug_console.top-aligned {left:0; right:0; top:0;}';
 		css += '#debug_console.bottom-aligned {left:0; right:0; bottom:0;}';
 		css += '#debug_console a.log-button {font: bold 12px Arial, sans-serif!important; pointer-events:all; text-align:center; text-decoration:none; border:1px solid #999; background:#333; color:#fff; width:16px; height:16px; padding:5px; margin:1px; display:block; float:right; }';
-		css += '#debug_console font.log-error a {pointer-events:all;}';
+		css += '#debug_console font.log-error a {pointer-events:all;color:red;}';
 		css += '#debug_console font.log-date {color:gray;}';
 		css += '#debug_console font.log-info {color:yellow;}';
 		css += '#debug_console font.log-warn {color:orange;}';
