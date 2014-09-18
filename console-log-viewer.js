@@ -66,7 +66,7 @@ var ConsoleLogViewer = (function() {
 		if (window.location.href.indexOf("//try.haxe.org") > -1)
 		{
 			ConsoleLogViewer.TOTAL = 999999;
-			var d = document.getElementById("#debug_console");
+			var d = document.getElementById("debug_console");
 			d.style.pointerEvents = "auto";
 			d.style.position = "relative";
 		}
