@@ -76,7 +76,7 @@ var ConsoleLogViewer = (function() {
 			d.style.height = "100%";
 			d.style.overflow = "auto";
 			var m = document.getElementById("debug_console_messages");
-			m.style.font = "11px monospace !important";
+			m.style.font = "11px monospace";
 			m.style.pointerEvents = "auto";
 		}
 	}
