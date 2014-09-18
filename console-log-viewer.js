@@ -21,6 +21,7 @@ var ConsoleLogViewer = (function() {
 			self.addCSS();
 			self.addDivs(self);
 			self.overwrite();
+			self.applyCustomSettings();
 		}
 		catch(e) 
 		{
@@ -29,7 +30,8 @@ var ConsoleLogViewer = (function() {
 				self.addCSS();
 				self.addDivs(self);
 				self.overwrite();
-			},61);
+				self.applyCustomSettings();
+			}, 61);
 		}
 	}
 	
@@ -57,6 +59,17 @@ var ConsoleLogViewer = (function() {
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
 		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
+	}
+	
+	ConsoleLogViewer.prototype.overwrite = function()
+	{
+		if (window.location.href.indexOf("//try.haxe.org") > -1)
+		{
+			ConsoleLogViewer.TOTAL = 999999;
+			var d = document.getElementById("#debug_console");
+			d.style.pointerEvents = "auto";
+			d.style.position = "relative";
+		}
 	}
 	
 	ConsoleLogViewer.prototype.overwrite = function()
