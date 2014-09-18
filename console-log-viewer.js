@@ -38,7 +38,7 @@ var ConsoleLogViewer = (function() {
 	ConsoleLogViewer.prototype.getFormattedTime = function()
 	{
 		var date = new Date();
-		return this.format(date.getHours(), 2) + ":" + this.format(date.getMinutes(), 2) + ":" + this.format(date.getSeconds(), 2) + ": " + this.format(date.getMilliseconds(), 3);
+		return this.format(date.getHours(), 2) + ":" + this.format(date.getMinutes(), 2) + ":" + this.format(date.getSeconds(), 2) + ":" + this.format(date.getMilliseconds(), 3);
 	}
 	
 	ConsoleLogViewer.prototype.format = function(v, x)
