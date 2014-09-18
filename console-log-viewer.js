@@ -69,6 +69,7 @@ var ConsoleLogViewer = (function() {
 			var d = document.getElementById("debug_console");
 			d.style.pointerEvents = "auto";
 			d.style.position = "relative";
+			d.style.font = "11px monospace !important";
 			d.style.left = "auto";
 			d.style.top = "auto";
 			d.style.bottom = "auto";
