@@ -61,7 +61,7 @@ var ConsoleLogViewer = (function() {
 		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
 	}
 	
-	ConsoleLogViewer.prototype.overwrite = function()
+	ConsoleLogViewer.prototype.applyCustomSettings = function()
 	{
 		if (window.location.href.indexOf("//try.haxe.org") > -1)
 		{
