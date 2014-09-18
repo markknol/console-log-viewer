@@ -69,6 +69,12 @@ var ConsoleLogViewer = (function() {
 			var d = document.getElementById("debug_console");
 			d.style.pointerEvents = "auto";
 			d.style.position = "relative";
+			d.style.left = "auto";
+			d.style.top = "auto";
+			d.style.bottom = "auto";
+			d.style.right = "auto";
+			d.style.height = "100%";
+			d.style.overflow = "auto";
 		}
 	}
 	
