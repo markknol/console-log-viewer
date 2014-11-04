@@ -68,12 +68,13 @@ var ConsoleLogViewer = (function() {
 			ConsoleLogViewer.TOTAL = 999999;
 			var d = document.getElementById("debug_console");
 			d.style.pointerEvents = "auto";
-			d.style.position = "relative";
+			d.style.position = "absolute";
 			d.style.left = "auto";
 			d.style.top = "auto";
 			d.style.bottom = "auto";
 			d.style.right = "auto";
-			d.style.height = "100%";
+			d.style.height = d.style.width = "100%";
+			d.style.background = "rgba(200,200,200,.7)";
 			d.style.overflow = "auto";
 			var m = document.getElementById("debug_console_messages");
 			m.style.font = "11px monospace";
