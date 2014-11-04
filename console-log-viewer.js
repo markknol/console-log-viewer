@@ -73,7 +73,8 @@ var ConsoleLogViewer = (function() {
 			d.style.top = "auto";
 			d.style.bottom = "auto";
 			d.style.right = "auto";
-			d.style.height = d.style.width = "100%";
+			d.style.height = "100%";
+			d.style.width = "90%";
 			d.style.background = "rgba(235,235,235,.7)";
 			d.style.overflow = "auto";
 			var m = document.getElementById("debug_console_messages");
