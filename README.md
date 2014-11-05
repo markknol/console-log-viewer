@@ -20,6 +20,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 
 #### Features
 * Pause/resume the console logs by pressing the ► button
+* Clicking on a javascript-error opens the source
 * Switch top/bottom alignment by pressing the ↕ button in the console. To start bottom-aligned, use `console_at_bottom=true` in the url.
   
 _[1] .. depends on your copy/paste skills_  
