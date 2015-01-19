@@ -8,6 +8,7 @@
 
 var ConsoleLogViewer = (function() {
 	
+	ConsoleLogViewer.isMinimized = false;
 	ConsoleLogViewer.logEnabled = true;
 	ConsoleLogViewer.TOTAL = 15;
 	
@@ -58,7 +59,22 @@ var ConsoleLogViewer = (function() {
 		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
-		document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
+		
+		this.updateLog();
+	}
+	
+	ConsoleLogViewer.prototype.updateLog = function()
+	{
+		if (!ConsoleLogViewer.isMinimized)
+		{
+			document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
+		}
+		else
+		{
+			var minimized = [];
+			for(var i = Math.max(0, _items.length-3), leni = _items.length; i < leni ; i++) minimized.push(_items[i]);
+			document.getElementById('debug_console_messages').innerHTML = minimized.join("<br>");
+		}
 	}
 	
 	ConsoleLogViewer.prototype.applyCustomSettings = function()
@@ -145,16 +161,25 @@ var ConsoleLogViewer = (function() {
 		var div = document.createElement('div');
 		div.id = "debug_console";
 		div.className = alignment;
-		div.innerHTML = ('<a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div>');
+		div.innerHTML = ('<a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#close" id="debug_console_minimize_button" class="log-button">-</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div>');
 		document.getElementsByTagName('body')[0].appendChild(div);
 		
 		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { 
-			document.getElementById("debug_console").style.display = 'none'; 
+			
+			div.style.display= "none";
+			e.preventDefault();
+		}, false);
+		
+		document.getElementById("debug_console_minimize_button").addEventListener("click", function(e) { 
+			
+			ConsoleLogViewer.isMinimized = !ConsoleLogViewer.isMinimized;
+			this.innerHTML = ConsoleLogViewer.isMinimized ? "+" : "-";
+			self.updateLog();
 			e.preventDefault();
 		}, false);
 		
 		document.getElementById("debug_console_position_button").addEventListener("click", function(e) { 
-			document.getElementById("debug_console").className = (document.getElementById("debug_console").className == "top-aligned") ? "bottom-aligned" : "top-aligned"; 
+			div.className = (div.className == "top-aligned") ? "bottom-aligned" : "top-aligned"; 
 			e.preventDefault();
 		}, false);
 		
@@ -171,6 +196,7 @@ var ConsoleLogViewer = (function() {
 		css += '#debug_console_messages { background:transparent;pointer-events:none; }'
 		css += '#debug_console_button { border:1px solid #fff; position:absolute; z-index:2; }';
 		css += '#debug_console.top-aligned {left:0; right:0; top:0;}';
+		css += '#debug_console.minimized {left:0; right:0; top:0;}';
 		css += '#debug_console.bottom-aligned {left:0; right:0; bottom:0;}';
 		css += '#debug_console a.log-button {font: bold 12px Arial, sans-serif!important; pointer-events:all; text-align:center; text-decoration:none; border:1px solid #999; background:#333; color:#fff; width:16px; height:16px; padding:5px; margin:1px; display:block; float:right; }';
 		css += '#debug_console font.log-error a {pointer-events:all;color:red;}';
