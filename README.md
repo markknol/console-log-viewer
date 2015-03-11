@@ -29,5 +29,3 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 _[1] .. depends on your copy/paste skills_  
 _[2] .. if this isn't true [report here](https://github.com/markknol/console-log-viewer/issues)_  
 _[3] .. protip: blame someone else_  
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/082139baa45624940f19e1af4542a4a7 "githalytics.com")](http://githalytics.com/markknol/console-log-viewer)
