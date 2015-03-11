@@ -16,6 +16,10 @@ In the `<head>` before other `<script>` tags is probably the best place.
     
     <script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
 
+If this url gets rejected you might use (powered by rawgit.com)
+
+    <script src="https://rawgit.com/markknol/console-log-viewer/gh-pages/console-log-viewer.js"></script>
+    
 #### What does it do?
 
 It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it. 
