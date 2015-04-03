@@ -57,8 +57,8 @@ var ConsoleLogViewer = (function() {
 	{
 		if (!ConsoleLogViewer.logEnabled) return;
 		
-		var content = (splitArgs ? Array.prototype.slice.call(args).join(",") : args);
-		if (content != null && (content.indexOf("script") > -1)) return; // Want to log "script"? No.
+		var content = args;//(splitArgs ? Array.prototype.slice.call(args).join(",") : args);
+		//if (content != null && (content.indexOf("script") > -1)) return; // Want to log script ? No.
 		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + content + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
@@ -78,6 +78,11 @@ var ConsoleLogViewer = (function() {
 			for(var i = Math.max(0, _items.length-3), leni = _items.length; i < leni ; i++) minimized.push(_items[i]);
 			document.getElementById('debug_console_messages').innerHTML = minimized.join("<br>");
 		}
+	}
+	
+	ConsoleLogViewer.prototype.flatten = function(value)
+	{
+		return value.split("<").join("&lt;").split(">").join("&gt;").split("\"").join("&quot;");
 	}
 	
 	ConsoleLogViewer.prototype.applyCustomSettings = function()
@@ -119,23 +124,23 @@ var ConsoleLogViewer = (function() {
 		
 		// overwrite original functions
 		if (original.console.log) console.log = function(){
-			self.log(arguments,"log-normal", true); 
+			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-normal", true); 
 			original.console.log.apply(this, arguments);
 		}
 		if (original.console.debug) console.debug = function(){
-			self.log(arguments,"log-debug", true); 
+			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-debug", true); 
 			original.console.debug.apply(this, arguments);
 		}
 		if (original.console.info) console.info = function(){
-			self.log(arguments,"log-info", true); 
+			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-info", true); 
 			original.console.info.apply(this, arguments);
 		}
 		if (original.console.warn) console.warn = function(){
-			self.log(arguments,"log-warn", true); 
+			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-warn", true); 
 			original.console.warn.apply(this, arguments);
 		}
 		if (original.console.error) console.error = function(){
-			self.log(arguments,"log-error", true); 
+			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-error", true); 
 			original.console.error.apply(this, arguments);
 		}
 		window.onerror = function(message, url, lineNumber){
