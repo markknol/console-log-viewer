@@ -57,7 +57,10 @@ var ConsoleLogViewer = (function() {
 	{
 		if (!ConsoleLogViewer.logEnabled) return;
 		
-		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + (splitArgs ? Array.prototype.slice.call(args).join(",") : args) + "<\/font>");
+		var content = (splitArgs ? Array.prototype.slice.call(args).join(",") : args);
+		content = content.split("<").join("&lt;").split(">").join("&gt;");
+		
+		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + content + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
 		
 		this.updateLog();
