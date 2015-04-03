@@ -119,7 +119,7 @@ var ConsoleLogViewer = (function() {
 		
 		// overwrite original functions
 		if (original.console.log) console.log = function(){
-			self.log(arguments,"log-normal", true, rue); 
+			self.log(arguments,"log-normal", true, true); 
 			original.console.log.apply(this, arguments);
 		}
 		if (original.console.debug) console.debug = function(){
