@@ -53,12 +53,12 @@ var ConsoleLogViewer = (function() {
 		}
 	}
 	
-	ConsoleLogViewer.prototype.log = function(args, color, splitArgs)
+	ConsoleLogViewer.prototype.log = function(args, color, splitArgs, replaceTags)
 	{
 		if (!ConsoleLogViewer.logEnabled) return;
 		
 		var content = (splitArgs ? Array.prototype.slice.call(args).join(",") : args);
-		content = content.split("<").join("&lt;").split(">").join("&gt;");
+		if (replaceTags) content = content.split("<").join("&lt;").split(">").join("&gt;");
 		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + content + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
@@ -119,27 +119,27 @@ var ConsoleLogViewer = (function() {
 		
 		// overwrite original functions
 		if (original.console.log) console.log = function(){
-			self.log(arguments,"log-normal", true); 
+			self.log(arguments,"log-normal", true, true); 
 			original.console.log.apply(this, arguments);
 		}
 		if (original.console.debug) console.debug = function(){
-			self.log(arguments,"log-debug", true); 
+			self.log(arguments,"log-debug", true, true); 
 			original.console.debug.apply(this, arguments);
 		}
 		if (original.console.info) console.info = function(){
-			self.log(arguments,"log-info", true); 
+			self.log(arguments,"log-info", true, true); 
 			original.console.info.apply(this, arguments);
 		}
 		if (original.console.warn) console.warn = function(){
-			self.log(arguments,"log-warn", true); 
+			self.log(arguments,"log-warn", true, true); 
 			original.console.warn.apply(this, arguments);
 		}
 		if (original.console.error) console.error = function(){
-			self.log(arguments,"log-error", true); 
+			self.log(arguments,"log-error", true, true); 
 			original.console.error.apply(this, arguments);
 		}
 		window.onerror = function(message, url, lineNumber){
-			self.log([message, "<a target='_blank' onclick='javascript:DebugSource.show(this.href, this.parentNode.innerText);return false' href='"+url+"#"+lineNumber+"'>"+url+"</a>", "line:" + lineNumber], "log-error", true); 
+			self.log([message, "<a target='_blank' onclick='javascript:DebugSource.show(this.href, this.parentNode.innerText);return false' href='"+url+"#"+lineNumber+"'>"+url+"</a>", "line:" + lineNumber], "log-error", true, false); 
 			if (original.window.onerror) return original.window.onerror(message, url, lineNumber);
 			else return false;
 		}
