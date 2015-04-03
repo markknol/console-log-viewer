@@ -58,7 +58,7 @@ var ConsoleLogViewer = (function() {
 		if (!ConsoleLogViewer.logEnabled) return;
 		
 		var content = (splitArgs ? Array.prototype.slice.call(args).join(",") : args);
-		if (content != null && (content.indexOf("<script") > -1)) return; // Want to log <script ? No.
+		if (content != null && (content.indexOf("script") > -1)) return; // Want to log "script"? No.
 		
 		_items.push("<font class='log-date'>" + this.getFormattedTime() + "</font> &nbsp; <font class='" + color + "'>" + content + "<\/font>");
 		while (_items.length > ConsoleLogViewer.TOTAL) _items.shift();
