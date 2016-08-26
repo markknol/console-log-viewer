@@ -7,7 +7,7 @@ console-log-viewer.js
 
 I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors and related source. There are a lot of remote-tools. Some are not available for all browsers, take time too much time to setup or aren't sync because of remote delays. 
 
-#### How to install (in 5 seconds)?
+## How to install (in 5 seconds)?
 
 Add this piece of code somewhere in your html-page. Save document, refresh browser.  
 In the `<head>` before other `<script>` tags is probably the best place.
