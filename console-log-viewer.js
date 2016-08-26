@@ -241,6 +241,7 @@ var ConsoleLogViewer = (function() {
 		ConsoleLogViewer.IS_CLOSED = value; 
 		
 		document.getElementById("debug_console_close_button").innerHTML = !value ? "x" : "&Xi;";
+		document.getElementById("debug_console").style.background = !value ? "rgba(0, 0, 0, .75)" : "transparent";
 		document.getElementById("debug_console_messages").style.display = !value ? "block" : "none";
 		document.getElementById("debug_console_minimize_button").style.display = !value ? "inline" : "none";
 		document.getElementById("debug_console_position_button").style.display = !value ? "inline" : "none";
