@@ -24,11 +24,42 @@ If this url gets rejected you might use (powered by rawgit.com)
 
 It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it. 
 
-#### Features
+## Features
+
+#### Close / Open console
+* Closes the console with the **x** button, and bring back with the **&Xi;** button. 
+* Start closed using:
+
+```html
+<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?closed=true"></script>
+```
+
+#### Pause
 * Pause/resume the console logs by pressing the ► button
-* Clicking on a Javascript-error opens the source in a new tab (<a href="https://twitter.com/mknol/status/529937001563553792">demo</a>). 
+* Paused minimized using:
+
+```html
+<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?log_enabled=false"></script>
+```
+
+#### Minimize
 * Minimize the console with the **-** button, and bring back to normal with the **+** button.
+* Start minimized using:
+
+```html
+<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?minimized=true"></script>
+```
+
+#### Alignment
 * Switch top/bottom alignment by pressing the **↕** button in the console. To start bottom-aligned, use `console_at_bottom=true` in the url.
+* Start at bottom using:
+
+```html
+<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?align=bottom"></script>
+```
+
+#### Displaying errors
+Clicking on a Javascript-error opens the source in a new tab (<a href="https://twitter.com/mknol/status/529937001563553792">demo</a>). 
   
 _[1] .. depends on your copy/paste skills_  
 _[2] .. if this isn't true [report here](https://github.com/markknol/console-log-viewer/issues)_  
