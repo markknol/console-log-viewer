@@ -51,8 +51,8 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 ```
 
 #### Alignment
-* Switch top/bottom alignment by pressing the **↕** button in the console. To start bottom-aligned, use `console_at_bottom=true` in the url.
-* Start at bottom using:
+* Switch top/bottom alignment by pressing the **&uarr;** or **&darr;" button in the console. 
+* Start at bottom alined using:
 
 ```html
 <script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?align=bottom"></script>
