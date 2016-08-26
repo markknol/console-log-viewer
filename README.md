@@ -51,7 +51,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 ```
 
 #### Alignment
-* Switch top/bottom alignment by pressing the **&uarr;** or **&darr;" button in the console. 
+* Switch top/bottom alignment by pressing the **&uarr;** or **&darr;** button in the console. 
 * Start at bottom alined using:
 
 ```html
