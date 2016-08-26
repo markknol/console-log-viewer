@@ -183,9 +183,9 @@ var ConsoleLogViewer = (function() {
 					{
 						ConsoleLogViewer.IS_CLOSED = true;
 					}
-					if (script.src.indexOf('paused=true') !== -1)
+					if (script.src.indexOf('log_enabled=false') !== -1)
 					{
-						ConsoleLogViewer.LOG_ENABLED = true;
+						ConsoleLogViewer.LOG_ENABLED = false;
 					}
 				}
 			}
