@@ -7,7 +7,7 @@ It's useful when you want to see logs and the errors you [3] have created in a m
 
 I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors and related source. There are a lot of remote-tools. Some are not available for all browsers, take time too much time to setup or aren't sync because of remote delays. 
 
-<img src="http://dump.stroep.nl/console-log-viewer.gif?v=2" alt="console log viewer"/>
+<img src="http://dump.stroep.nl/console-log-viewer.gif?v=3" alt="console log viewer"/>
 
 #### How to install (in 5 seconds)?
 
