@@ -3,7 +3,7 @@ console-log-viewer.js
 
 ## .. displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment. Installed in 5 seconds [1]. Works on every device and browser [2].
 
-### It's useful when you want to see logs and the errors you [3] have created in a mobile browser while you are developing and debugging. 
+#### It's useful when you want to see logs and the errors you [3] have created in a mobile browser while you are developing and debugging. 
 
 > I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors and related source. There are a lot of remote-tools. Some are not available for all browsers, take time too much time to setup or aren't sync because of remote delays. 
 
