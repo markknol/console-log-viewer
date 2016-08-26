@@ -4,12 +4,11 @@
  * http://markknol.github.io/console-log-viewer/
  * @author Mark Knol [http://blog.stroep.nl]
  */
-
-
 var ConsoleLogViewer = (function() {
-	
-	ConsoleLogViewer.isMinimized = false;
-	ConsoleLogViewer.logEnabled = true;
+	ConsoleLogViewer.ALIGNMENT = "top"; // top | bottom
+	ConsoleLogViewer.IS_MINIMIZED = false; // true | false
+	ConsoleLogViewer.LOG_ENABLED = true;
+	ConsoleLogViewer.IS_CLOSED = false;
 	ConsoleLogViewer.TOTAL = 15;
 	
 	var _items = [];
@@ -55,7 +54,7 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.log = function(args, color, splitArgs)
 	{
-		if (!ConsoleLogViewer.logEnabled) return;
+		if (!ConsoleLogViewer.LOG_ENABLED) return;
 		
 		var content = args;//(splitArgs ? Array.prototype.slice.call(args).join(",") : args);
 		//if (content != null && (content.indexOf("script") > -1)) return; // Want to log script ? No.
@@ -68,7 +67,7 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.updateLog = function()
 	{
-		if (!ConsoleLogViewer.isMinimized)
+		if (!ConsoleLogViewer.IS_MINIMIZED)
 		{
 			document.getElementById('debug_console_messages').innerHTML = _items.join("<br>");
 		}
@@ -111,35 +110,45 @@ var ConsoleLogViewer = (function() {
 	{
 		var self = this;
 		// store original functions
-		var original = {
-			console: {
+		var original = 
+		{
+			console: 
+			{
 				log:console.log,
 				debug:console.debug,
 				info:console.info,
 				warn:console.warn,
 				error:console.error
 			}, 
-			window:{onerror: window.onerror}
+			window: 
+			{
+				onerror: window.onerror
+			}
 		}
 		
 		// overwrite original functions
-		if (original.console.log) console.log = function(){
+		if (original.console.log) console.log = function()
+		{
 			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-normal", true); 
 			original.console.log.apply(this, arguments);
 		}
-		if (original.console.debug) console.debug = function(){
+		if (original.console.debug) console.debug = function()
+		{
 			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-debug", true); 
 			original.console.debug.apply(this, arguments);
 		}
-		if (original.console.info) console.info = function(){
+		if (original.console.info) console.info = function()
+		{
 			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-info", true); 
 			original.console.info.apply(this, arguments);
 		}
-		if (original.console.warn) console.warn = function(){
+		if (original.console.warn) console.warn = function()
+		{
 			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-warn", true); 
 			original.console.warn.apply(this, arguments);
 		}
-		if (original.console.error) console.error = function(){
+		if (original.console.error) console.error = function()
+		{
 			self.log(self.flatten(Array.prototype.slice.call(arguments).join(",")),"log-error", true); 
 			original.console.error.apply(this, arguments);
 		}
@@ -152,50 +161,103 @@ var ConsoleLogViewer = (function() {
 	
 	ConsoleLogViewer.prototype.addDivs = function(self)
 	{
+		var self = self;
 		var alignment = window.location.href.indexOf("console_at_bottom=true") > -1 || window.location.href.indexOf("console_at_bottom=1") > -1 ? "bottom-aligned" : "top-aligned";
 		var scripts = window.document.getElementsByTagName('script');
-		for (var i=0;i<scripts.length;i++) {
-		    script = scripts[i];
-		    if(typeof script !== 'undefined' && typeof script.src !== 'undefined'){
-		        if (script.src.indexOf('console-log-viewer.js') !== -1) {
-		            if(script.src.indexOf('console_at_bottom=true') !== -1){
-		                alignment = 'bottom-aligned';
-		                break;
-		            }
-		        }
-		    }
+		for (var i=0;i<scripts.length;i++) 
+		{
+			var script = scripts[i];
+			if(typeof script !== 'undefined' && typeof script.src !== 'undefined') 
+			{
+				if (script.src.indexOf('console-log-viewer.js') !== -1) 
+				{
+					if (script.src.indexOf('align=bottom') !== -1)
+					{
+						ConsoleLogViewer.ALIGNMENT = "bottom";
+					} 
+					if (script.src.indexOf('minimized=true') !== -1)
+					{
+						ConsoleLogViewer.IS_MINIMIZED = true;
+					}
+					if (script.src.indexOf('closed=true') !== -1)
+					{
+						ConsoleLogViewer.IS_CLOSED = true;
+					}
+					if (script.src.indexOf('paused=true') !== -1)
+					{
+						ConsoleLogViewer.LOG_ENABLED = true;
+					}
+				}
+			}
 		}
+		
 		
 		var div = document.createElement('div');
 		div.id = "debug_console";
-		div.className = alignment;
-		div.innerHTML = ('<a href="#close" id="debug_console_close_button" class="log-button">x</a><a href="#close" id="debug_console_minimize_button" class="log-button">-</a><a href="#position" id="debug_console_position_button" class="log-button">&#8597;</a><a href="#pause" id="debug_console_pause_button" class="log-button">&#9658;</a><div id="debug_console_messages"></div>');
+		var html = '<a href="#close" id="debug_console_close_button" class="log-button"></a>';
+		html += '<a href="#minimize" id="debug_console_minimize_button" class="log-button"></a>';
+		html += '<a href="#position" id="debug_console_position_button" class="log-button"></a>';
+		html += '<a href="#pause" id="debug_console_pause_button" class="log-button"></a>';
+		html += '<div id="debug_console_messages"></div>';
+		div.innerHTML = (html);
 		document.getElementsByTagName('body')[0].appendChild(div);
 		
 		document.getElementById("debug_console_close_button").addEventListener("click", function(e) { 
-			
-			div.style.display= "none";
+			//div.style.display = "none";
+			ConsoleLogViewer.IS_CLOSED = !ConsoleLogViewer.IS_CLOSED;
+			self.setClosed(ConsoleLogViewer.IS_CLOSED);
 			e.preventDefault();
 		}, false);
 		
 		document.getElementById("debug_console_minimize_button").addEventListener("click", function(e) { 
-			
-			ConsoleLogViewer.isMinimized = !ConsoleLogViewer.isMinimized;
-			this.innerHTML = ConsoleLogViewer.isMinimized ? "+" : "-";
-			self.updateLog();
+			ConsoleLogViewer.IS_MINIMIZED = !ConsoleLogViewer.IS_MINIMIZED;
+			self.setMinimized(ConsoleLogViewer.IS_MINIMIZED);
 			e.preventDefault();
 		}, false);
 		
 		document.getElementById("debug_console_position_button").addEventListener("click", function(e) { 
-			div.className = (div.className == "top-aligned") ? "bottom-aligned" : "top-aligned"; 
+			ConsoleLogViewer.ALIGNMENT = ConsoleLogViewer.ALIGNMENT == "top" ? "bottom" : "top";
+			self.alignTo(ConsoleLogViewer.ALIGNMENT);
 			e.preventDefault();
 		}, false);
 		
 		document.getElementById("debug_console_pause_button").addEventListener("click", function(e) { 
-			ConsoleLogViewer.logEnabled = !ConsoleLogViewer.logEnabled; 
-			this.innerHTML = (!ConsoleLogViewer.logEnabled ? "||" : "&#9658;"); 
+			ConsoleLogViewer.LOG_ENABLED = !ConsoleLogViewer.LOG_ENABLED; 
+			self.setLogEnabled(ConsoleLogViewer.logEnabled);
 			e.preventDefault();
 		}, false);
+		
+		self.setClosed(ConsoleLogViewer.IS_CLOSED);
+		self.setMinimized(ConsoleLogViewer.IS_MINIMIZED);
+		self.setLogEnabled(ConsoleLogViewer.LOG_ENABLED);
+		self.alignTo(ConsoleLogViewer.ALIGNMENT);
+	}
+	
+	ConsoleLogViewer.prototype.setClosed = function(value) { // true | false
+		ConsoleLogViewer.IS_CLOSED = value; 
+		
+		document.getElementById("debug_console_close_button").innerHTML = !value ? "x" : "&Xi;";
+		document.getElementById("debug_console_messages").style.display = !value ? "block" : "none";
+		document.getElementById("debug_console_minimize_button").style.display = !value ? "inline" : "none";
+		document.getElementById("debug_console_position_button").style.display = !value ? "inline" : "none";
+		document.getElementById("debug_console_pause_button").style.display = !value ? "inline" : "none";
+	}
+	
+	ConsoleLogViewer.prototype.setLogEnabled = function(value) { // true | false
+		ConsoleLogViewer.LOG_ENABLED = value; 
+		document.getElementById("debug_console_pause_button").innerHTML = (!value ? "||" : "&#9658;"); 
+	}
+	
+	ConsoleLogViewer.prototype.setMinimized = function(value) { // true | false
+		ConsoleLogViewer.IS_MINIMIZED = value;
+		document.getElementById("debug_console_minimize_button").innerHTML = value ? "+" : "-";
+		this.updateLog();
+	}
+	
+	ConsoleLogViewer.prototype.alignTo = function(value) { // top | bottom
+		ConsoleLogViewer.ALIGNMENT = value;
+		document.getElementById("debug_console").className = value == "bottom" ? "bottom-aligned" : "top-aligned"; 
+		document.getElementById("debug_console_position_button").innerHTML = value == "bottom" ? "&uarr;" : "&darr;";
 	}
 	
 	ConsoleLogViewer.prototype.addCSS = function()
