@@ -36,7 +36,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 
 #### Pause
 * Pause/resume the console logs by pressing the ► button
-* Paused minimized using:
+* Start minimized using:
 
 ```html
 <script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?log_enabled=false"></script>
