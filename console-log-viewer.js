@@ -227,7 +227,7 @@ var ConsoleLogViewer = (function() {
 		
 		document.getElementById("debug_console_pause_button").addEventListener("click", function(e) { 
 			ConsoleLogViewer.LOG_ENABLED = !ConsoleLogViewer.LOG_ENABLED; 
-			self.setLogEnabled(ConsoleLogViewer.logEnabled);
+			self.setLogEnabled(ConsoleLogViewer.LOG_ENABLED);
 			e.preventDefault();
 		}, false);
 		
