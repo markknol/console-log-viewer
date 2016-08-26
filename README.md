@@ -18,7 +18,7 @@ In the `<head>` before other `<script>` tags is probably the best place.
 
 <img src="http://dump.stroep.nl/console-log-viewer.gif?v=4" alt="console log viewer"/>
 
-#### What does it do?
+## What does it do?
 
 It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `console.error` and `window.onerror` and displays it in an overlay on top of your site. That's it. 
 
