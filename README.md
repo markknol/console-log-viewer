@@ -7,8 +7,6 @@ console-log-viewer.js
 
 I found debugging is a bit hard on mobile devices since there is no magic button in mobile browser to see the console logs or Javascript errors and related source. There are a lot of remote-tools. Some are not available for all browsers, take time too much time to setup or aren't sync because of remote delays. 
 
-<img src="http://dump.stroep.nl/console-log-viewer.gif?v=4" alt="console log viewer"/>
-
 #### How to install (in 5 seconds)?
 
 Add this piece of code somewhere in your html-page. Save document, refresh browser.  
@@ -17,6 +15,8 @@ In the `<head>` before other `<script>` tags is probably the best place.
 ```html
 <script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
 ```
+
+<img src="http://dump.stroep.nl/console-log-viewer.gif?v=4" alt="console log viewer"/>
 
 #### What does it do?
 
