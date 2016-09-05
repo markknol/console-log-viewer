@@ -103,10 +103,10 @@ var ConsoleLogViewer = (function() {
 			var m = document.getElementById("debug_console_messages");
 			m.style.font = "11px monospace";
 			m.style.pointerEvents = "auto";
-			 document.getElementById("debug_console_close_button").style.display="none";
-			 document.getElementById("debug_console_minimize_button").style.display="none";
-			 document.getElementById("debug_console_position_button").style.display="none";
-			 document.getElementById("debug_console_pause_button").style.display="none";
+			document.getElementById("debug_console_close_button").style.display="none";
+			document.getElementById("debug_console_minimize_button").style.display="none";
+			document.getElementById("debug_console_position_button").style.display="none";
+			document.getElementById("debug_console_pause_button").style.display="none";
 		}
 	}
 	
@@ -211,6 +211,13 @@ var ConsoleLogViewer = (function() {
 			ConsoleLogViewer.IS_CLOSED = !ConsoleLogViewer.IS_CLOSED;
 			self.setClosed(ConsoleLogViewer.IS_CLOSED);
 			e.preventDefault();
+		}, false);
+		
+		window.addEventListener("keydown", function(e) { 
+			if (e.keyCode == 192) {
+				ConsoleLogViewer.IS_CLOSED = !ConsoleLogViewer.IS_CLOSED;
+				self.setClosed(ConsoleLogViewer.IS_CLOSED);
+			}
 		}, false);
 		
 		document.getElementById("debug_console_minimize_button").addEventListener("click", function(e) { 
