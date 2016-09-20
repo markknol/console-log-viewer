@@ -26,6 +26,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 
 #### Close / Open console
 * Closes the console with the **x** button, and bring back with the **&Xi;** button. 
+* Tip: Toggle the console with the keyboard ~ tilde key.
 * Start closed using:
 
 ```html
