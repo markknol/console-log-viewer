@@ -87,7 +87,7 @@ var ConsoleLogViewer = (function() {
 	ConsoleLogViewer.prototype.applyCustomSettings = function()
 	{
 		var url = window.location.href;
-		if (url.indexOf("//try.haxe.org") > -1 || url.indexOf("try-haxe.mrcdk.com"))
+		if (url.indexOf("//try.haxe.org") > -1 || url.indexOf("try-haxe.mrcdk.com") > -1)
 		{
 			ConsoleLogViewer.TOTAL = 999999;
 			var d = document.getElementById("debug_console");
