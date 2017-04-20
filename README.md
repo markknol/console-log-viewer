@@ -13,7 +13,7 @@ Add this piece of code somewhere in your html-page. Save document, refresh brows
 In the `<head>` before other `<script>` tags is probably the best place.
     
 ```html
-<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
+<script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
 ```
 
 <img src="http://dump.stroep.nl/console-log-viewer.gif?v=4" alt="console log viewer"/>
@@ -30,7 +30,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 * Start closed using:
 
 ```html
-<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?closed=true"></script>
+<script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js?closed=true"></script>
 ```
 
 #### Pause
@@ -38,7 +38,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 * Start minimized using:
 
 ```html
-<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?log_enabled=false"></script>
+<script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js?log_enabled=false"></script>
 ```
 
 #### Minimize
@@ -46,7 +46,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 * Start minimized using:
 
 ```html
-<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?minimized=true"></script>
+<script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js?minimized=true"></script>
 ```
 
 #### Alignment
@@ -54,7 +54,7 @@ It captures `console.log`, `console.info`, `console.warn`, `console.debug`, `con
 * Start bottom aligned using:
 
 ```html
-<script src="http://markknol.github.io/console-log-viewer/console-log-viewer.js?align=bottom"></script>
+<script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js?align=bottom"></script>
 ```
 
 #### Displaying errors
