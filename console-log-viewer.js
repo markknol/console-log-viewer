@@ -1,8 +1,8 @@
 /**
  * Displays logs and Javascript errors in an overlay on top of your site. Useful for mobile webdevelopment.
  * 
- * http://markknol.github.io/console-log-viewer/
- * @author Mark Knol [http://blog.stroep.nl]
+ * <https://github.com/markknol/console-log-viewer>
+ * @author Mark Knol <http://blog.stroep.nl>
  */
 var ConsoleLogViewer = (function() {
 	ConsoleLogViewer.ALIGNMENT = "top"; // top | bottom
@@ -318,7 +318,7 @@ DebugSource.show = function(url,message) {
 		var startLineNumber = Std.parseInt(url.split("#").pop().split("-").shift()) - 1;
 		var endLineNumber = Std.parseInt(url.split("#").pop().split("-").pop()) - 1;
 		var css = $window.document.createElement("style");
-		var stylesheet = "body{font:13px consolas,'courier new',monospaced;background:#FFF;}\npre{max-width:1000px;width:100%;white-space:pre-line;}\n.highlighted-line{background:yellow;display:inline-block;}\n.tab{padding-right:20px;}\n.keyword{color:blue;}\n.operator{color:lightgray;}\n.linenumber{display:inline-block;width:45px;margin-right:5px;background:darkgray;color:white;}\n.debug-error{display:block;background:red;color:white;}";
+		var stylesheet = "body{font:14px consolas,'courier new',monospaced;background:#FFF;}\npre{max-width:1000px;width:100%;white-space:pre-line;}\n.highlighted-line{background:yellow;display:inline-block;}\n.tab{padding-right:20px;}\n.keyword{color:blue;}\n.operator{color:lightgray;}\n.linenumber{display:inline-block;width:45px;margin-right:5px;background:darkgray;color:white;}\n.debug-error{display:block;background:red;color:white;}";
 		css.type = "text/css";
 		if(css.styleSheet) css.styleSheet.cssText = stylesheet; else css.appendChild($window.document.createTextNode(stylesheet));
 		$window.document.getElementsByTagName("head")[0].appendChild(css);
