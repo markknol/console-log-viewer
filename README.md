@@ -16,7 +16,7 @@ In the `<head>` before other `<script>` tags is probably the best place.
 <script src="https://markknol.github.io/console-log-viewer/console-log-viewer.js"></script>
 ```
 
-<img src="http://dump.stroep.nl/console-log-viewer.gif?v=4" alt="console log viewer"/>
+<img src="http://dump.stroep.nl/console-log-viewer-3.gif" alt="console log viewer"/>
 
 ## What does it do?
 
